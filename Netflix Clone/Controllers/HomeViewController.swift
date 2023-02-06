@@ -32,6 +32,7 @@ class HomeViewController: UIViewController {
         homeFeedTable.tableHeaderView = headerView
         
         getTrendingMovies()
+        getTrendingTVs()
     }
     
     private func configureNavbar() {
@@ -53,6 +54,17 @@ class HomeViewController: UIViewController {
     
     private func getTrendingMovies() {
         APICaller.shared.getTrendingMovies { results in
+            switch results {
+            case .success(let movies):
+                print(movies)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getTrendingTVs() {
+        APICaller.shared.getTrendingTVs { results in
             switch results {
             case .success(let movies):
                 print(movies)
